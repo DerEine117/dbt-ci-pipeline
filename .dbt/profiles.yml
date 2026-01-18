@@ -2,6 +2,6 @@ dbt_project:
   outputs:
     dev:
       type: duckdb
-      path: dbt_project/lakehouse.duckdb
+      path: lakehouse.duckdb
       threads: 1
   target: dev
