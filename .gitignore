@@ -3,3 +3,41 @@ dbt_project/target/
 dbt_project/logs/
 .venv/
 __pycache__/
+
+# LaTeX temporary and output files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.pdf
+*.dvi
+*.ps
+*.eps
+*.figlist
+*.makefile
+*.fignums
+*.app
+
+# LaTeX build directories
+latex/build/
+latex/output/
+latex/temp/
+
+# LaTeX editor files
+*.backup
+*.swp
+*~

@@ -1,0 +1,135 @@
+\chapter{Beispiele für Abbildungen und Tabellen}\label{chapter:abbildungenTabellen}
+
+Hier finden Sie Beispiele für Abbildungen, Tabellen, Formelsatz und  Source Code.
+
+\section{Abbildungen}
+In diesem Abschnitt gibt die Abbildungen~\ref{abb:Logo2cmHoch} und~\ref{abb:Logo2cmBreit}, die beide das Logo der DHBW zeigen.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[height=2cm]{graphics/dhbw.png}
+\caption[DHBW-Logo 2cm hoch]{DHBW-Logo 2cm hoch.\footnotemark}
+\label{abb:Logo2cmHoch}
+\end{figure}
+\footnotetext{Mit Änderungen entnommen aus: \cite{onl:DHBW}}
+
+\lstset{language=TeX, % hervorzuhebende Keywords definieren
+  morekeywords={footnotetext,footnotemark,footcite,caption}
+}
+
+\emph{Spezialfall:} Sofern \emph{innerhalb} der Bezeichnung einer Abbildung eine Fußnote angegeben oder eine Quelle referenziert werden soll, geschieht dies nicht per \lstinline|\footnote| oder \lstinline
+|\footcite|. Vielmehr sind die Befehle \lstinline|\footnotemark| und \lstinline|\footnotetext| zu verwenden und außerdem das optionale Argument für \lstinline|\caption| anzugeben (vgl.\ Source Code).
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=2cm]{graphics/dhbw.png}
+\caption[DHBW-Logo 2cm breit.]{DHBW-Logo 2cm breit.\footnotemark}
+\label{abb:Logo2cmBreit}
+\end{figure}
+\footnotetext{dito}
+
+
+
+\section[Tabellen]{Tabellen\footnote{Erklärungen von Prof. Dr. Brandt.}}\label{sec:tabellen}
+
+In diesem Abschnitt finden Sie zwei unterschiedlich große Beispiel-Tabellen (Tabellen \ref{tab:BeispielTabelleKleiner} und  \ref{tab:BeispielTabelleGroesser}), welche den Regeln wichtiger Verlage entsprechen. Für die Erstellung von Tabellen empfiehlt sich das Paket \texttt{booktabs}, welches sich in der Handhabung kaum von den Standardbefehlen unterscheidet, jedoch wesentlich bessere Ergebnisse liefert.
+
+\begin{table}[h]
+  \centering
+  \ra{1.3}
+  \begin{tabular}{@{}llllll@{}}
+      \toprule
+      {Spalte 1} & {Spalte 2} & {Spalte 3} & {Spalte 4} & {Spalte 5} & {Spalte 6} \\
+      \midrule
+      a        & b          & c                & d        & e        & f        \\
+      Test     & Test, Test & Test, Test, Test & ~        & ~        & ~        \\
+      1        & 2          & 3                & 4        & 5        & 6        \\
+      \bottomrule
+  \end{tabular}
+  \caption{Kleinere Beispiel-Tabelle.}
+  \label{tab:BeispielTabelleKleiner}
+\end{table}
+
+Folgende Stilregeln sollten bei der Erstellung von Tabellen beachtet werden:
+\begin{itemize}
+\item Vermeiden Sie vertikale Linien.
+\item Drei horizontale Linien reichen aus: eine über der Tabelle (\texttt{\textbackslash toprule}), eine unter der Tabelle (\texttt{\textbackslash bottomrule}) und eine, die den Tabellenkopf vom Rest der Tabelle trennt (\texttt{\textbackslash midrule}).
+\item Horizontaler Abstand zwischen den Zeilen erhöht die Lesbarkeit (hier mit \texttt{booktabs} durch \texttt{\textbackslash ra\{1.3\}} realisiert, wobei zuvor in der Präambel \texttt{\textbackslash newcommand\{\textbackslash ra\}[1]\{\textbackslash renewcommand\{ \textbackslash arraystretch\}\{\#1\}\}} definiert wurde).
+
+\item Falls Sie mehrstufige Überschriften verwenden, benötigen Sie möglicherweise mehrere Linien. Horizontale Linien über eine Teilmenge von Spalten können mit \texttt{\textbackslash cmidrule} erzeugt werden. Mit dem optionalen Argument \texttt{\textbackslash cmidrule(lr)} wird die Linie am Anfang und Ende etwas beschnitten.
+\item Mehrstufige Zeilenbeschriftungen sollten durch Zwischenüberschriften und kleine Zusatzabstände realisiert werden (hier mit \texttt{\textbackslash addlinespace}).
+\item Verwenden Sie niemals doppelte Linien.
+\item Sie benötigen an den vertikalen Kanten der Tabelle keine Abstände (d.h.\ vor der ersten und nach der letzten Spalte wird \texttt{@\{\}} im Argument von \texttt{\textbackslash begin\{tabular\}} angegeben).
+\item Achten Sie auf Einheiten, Tausendertrennzeichen und Dezimalzeichen.
+\end{itemize}
+
+\begin{table}[t]
+  \centering
+  \ra{1.3} 
+  \begin{tabular}{@{}rrrrr@{}}
+  \toprule
+  & \multicolumn{2}{c}{{mean (\$)}} 
+  & \multicolumn{2}{c}{{std (\$)}} \\
+  \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+  {aspiration} 
+  & {diesel} 
+  & {gas} 
+  & {diesel} 
+  & {gas} \\
+  \midrule
+  \textit{front-engine}\\
+  standard   & 9,670.57  & 12,246.34 & 4,004.01 & 7,753.99 \\
+  turbo & 19,159.15 & 14,613.22 & 7,292.95 & 4,892.87 \\ \addlinespace
+  \textit{rear-engine}\\
+  standard    & \textemdash & 34,528.00 & \textemdash & 2,291.29 \\
+  \bottomrule
+  \end{tabular}
+  \caption{Tabelle mit mehrstufigen Zeilen- und Spaltenbeschriftungen.}
+  \label{tab:BeispielTabelleGroesser}
+\end{table}
+
+Die wichtigsten \emph{Platzierungsoptionen} für Tabellen (und Abbildungen) im Einzelnen:
+ \begin{itemize}
+ \item \texttt{h} -- here: möglichst genau an der Stelle, an der der Befehl im Quelltext steht
+ \item \texttt{t} -- top: am Seitenanfang
+ \item \texttt{b} -- bottom: am Seitenende
+ \end{itemize}
+
+
+
+\section{Etwas Mathematik}
+
+Eine abgesetzte Formel:
+\[
+  \int_a^b x^2 \: \mathrm{d} x = \frac{1}{3} (b^3 - a^3)
+\]
+
+Es ist $a^2+b^2 = c^2$ eine Formel im Text.
+
+Falls Ihr Dokument in größerem Umfang mathematische Formeln enthält, sollten Sie das Paket \texttt{amsmath}\footnote{verfügbar unter: \url{https://www.ctan.org/pkg/amsmath}} einbinden. Damit lassen sich zum Beispiel nummerierte Gleichungen und Matrizen darstellen wie in folgendem Beispiel:
+
+\begin{equation}
+A=
+\begin{pmatrix}  
+a_{11} & a_{12} \\  
+a_{21} & a_{22}  
+\end{pmatrix}
+\end{equation}
+
+\section{Source Code}
+
+Source Code-Blöcke können auf folgende Arten eingefügt werden:
+
+\lstset{language=Java}
+
+Direkt im \LaTeX-Source Code:
+\begin{lstlisting}
+if(1 > 0) {
+  System.out.println("OK"); 
+} else {
+  System.out.println("merkwuerdig");
+}
+\end{lstlisting}
+
+oder eingefügt aus einer externen Datei.
+\lstinputlisting{includes/HelloWorld.java}
