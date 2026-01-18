@@ -23,7 +23,7 @@ jobs:
 
       - name: Run dbt
         env:
-          DBT_PROFILES_DIR: ./.dbt
+          DBT_PROFILES_DIR: .dbt
         run: |
           dbt --version
           dbt debug
