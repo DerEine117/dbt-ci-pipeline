@@ -1,0 +1,32 @@
+name: dbt_ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run_dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run dbt
+        env:
+          DBT_PROFILES_DIR: ./.dbt
+        run: |
+          dbt --version
+          dbt debug
+          dbt run
+          dbt test
+        working-directory: dbt_project
