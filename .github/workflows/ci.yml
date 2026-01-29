@@ -30,3 +30,9 @@ jobs:
           dbt run
           dbt test
         working-directory: dbt_project
+
+      - name: Lint SQL models
+        env:
+          DBT_PROFILES_DIR: ${{ github.workspace }}/.dbt
+        run: |
+          sqlfluff lint dbt_project/models
